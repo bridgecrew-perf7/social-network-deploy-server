@@ -24,6 +24,7 @@ app.set('view engine', 'pug');
 
 
 app.use(express.json());
+app.options('*', cors()) // include before other routes
 app.use(cors({
     origin: process.env.CLIENT_URL,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
