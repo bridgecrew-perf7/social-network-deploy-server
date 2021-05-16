@@ -22,14 +22,15 @@ const port = process.env.PORT || 4000;
 app.set('views', './views')
 app.set('view engine', 'pug');
 
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    preflightContinue: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}))
 
 app.use(express.json());
-app.options('*', cors()) // include before other routes
-app.use(cors())
-// app.use(cors({
-//     origin: process.env.CLIENT_URL,
-//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }))
+// app.options('*', cors()) // include before other routes
+// app.use(cors())
 
 // cookieSession before passport init
 app.use(cookieSession({
